@@ -1,10 +1,8 @@
-# File: backend/app/api/routes.py
-
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from app.services.ml_service import predict_influencer
 
-router = APIRouter()
+router = APIRouter(prefix="/api")
 
 #Skema data
 class InfluencerInput(BaseModel):
