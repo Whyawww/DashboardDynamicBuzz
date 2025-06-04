@@ -36,8 +36,6 @@ A simple yet powerful web application built to predict whether an influencer is 
 
 ### Installation & Running the App
 
-**1. Frontend (ReactTailwind)**
-
 ```bash
 # Navigate to the frontend directory
 cd frontend
