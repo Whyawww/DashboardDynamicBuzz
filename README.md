@@ -36,8 +36,9 @@ A simple yet powerful web application built to predict whether an influencer is 
 
 ### Installation & Running the App
 
-**1. Frontend **
+**1. Frontend (ReactTailwind)**
 
+```bash
 # Navigate to the frontend directory
 cd frontend
 
@@ -52,29 +53,3 @@ npm install
 # Run the React development server
 npm run start
 # The frontend will open in your browser, typically on http://localhost:3000 (for CRA)
-
-**2. Backend (FastAPI Server)**
-
-```bash
-# Clone the repository
-# git clone <https://github.com/Whyawww/DashboardDynamicBuzz.git>
-# cd <DashboardDynamicBuzz>
-
-# Navigate to the backend directory
-cd backend
-
-# Create a virtual environment (recommended)
-python -m venv venv
-
-# Activate the virtual environment
-# On Windows:
-# venv\Scripts\activate
-
-# IMPORTANT: Ensure your model files are in place
-# Make sure `influencer_model.joblib`, `scaler.joblib` (or `preprocessor.joblib`),
-# and `model_columns.joblib` are present in the `backend/app/model_files/` directory.
-# These files are generated from the Jupyter Notebook (`.ipynb`).
-
-# Run the FastAPI server
-uvicorn app.main:app --reload
-# The backend will be running on [http://127.0.0.1:8000](http://127.0.0.1:8000)
