@@ -2,7 +2,9 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from app.services.ml_service import predict_influencer
 
-router = APIRouter(prefix="/api")
+router = APIRouter()
+print(">>> [routes.py] Objek 'router' telah dibuat.") 
+
 
 #Skema data
 class InfluencerInput(BaseModel):
@@ -17,12 +19,8 @@ class InfluencerInput(BaseModel):
 
 @router.post("/predict", tags=["Prediction"])
 async def handle_prediction(data: InfluencerInput):
-    """
-    Menerima data influencer dan mengembalikan prediksi rekomendasi 
-    beserta skor kepercayaan (probabilitas).
-    """
+    print(">>> [routes.py] Fungsi 'handle_prediction' dipanggil.")
     try:
-        #Ubah input Pydantic ke format dict
         input_data = data.dict(by_alias=True)
         result = predict_influencer(input_data)
         return {
@@ -30,4 +28,5 @@ async def handle_prediction(data: InfluencerInput):
             "recommendation_confidence": result["probability_recommended"]
         }
     except Exception as e:
+        print(f">>> [routes.py] Error di handle_prediction: {e}")
         raise HTTPException(status_code=500, detail=f"Terjadi kesalahan pada server: {e}")

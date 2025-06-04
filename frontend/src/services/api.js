@@ -16,7 +16,6 @@ export const getPrediction = async (influencerData) => {
   } catch (error) {
     console.error("API Call Failed:", error);
     let errorMessage = "Terjadi kesalahan yang tidak diketahui.";
-
     if (error.response) {
       errorMessage = error.response.data?.detail || `Error ${error.response.status}: ${error.response.statusText}`;
     } else if (error.request) {
