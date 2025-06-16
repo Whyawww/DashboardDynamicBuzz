@@ -168,6 +168,7 @@ const InfluencerForm = () => {
             focus:ring-indigo-500 transition-opacity ${
             isDisabled ? "opacity-50 cursor-not-allowed" : ""
           }`}
+          whileTap={{ scale: 2 }}
         >
           {status === "loading" ? "Analyzing..." : "Analyze Influencer"}
         </button>
