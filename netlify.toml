@@ -1,0 +1,15 @@
+# netlify.toml
+
+[build]
+  # Perintah untuk menginstal dependensi Python dari folder backend
+  command = "pip install -r backend/requirements.txt"
+  # Direktori tempat Netlify akan menemukan serverless functions
+  functions = "netlify/functions"
+  # Direktori frontend yang akan di-deploy (kita biarkan kosong karena backend tidak punya output statis)
+  # publish = "build" 
+
+[[redirects]]
+  # Arahkan semua request dari /api/* ke function api kita
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
