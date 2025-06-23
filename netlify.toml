@@ -1,15 +1,26 @@
-# netlify.toml
+# Konfigurasi Build & Deploy untuk Netlify
 
 [build]
-  # Perintah untuk menginstal dependensi Python dari folder backend
-  command = "pip install -r backend/requirements.txt"
-  # Direktori tempat Netlify akan menemukan serverless functions
+  # Perintah ini akan dieksekusi oleh Netlify untuk membangun proyek Anda:
+  # 1. Masuk ke direktori 'frontend', install dependensi, lalu build aplikasi React.
+  # 2. Kembali ke direktori root, lalu install dependensi Python untuk backend.
+  command = "cd frontend && npm install && npm run build && cd .. && pip install -r backend/requirements.txt"
+  
+  # Direktori tempat Netlify akan menemukan serverless functions (backend) Anda.
   functions = "netlify/functions"
-  # Direktori frontend yang akan di-deploy (kita biarkan kosong karena backend tidak punya output statis)
-  # publish = "build" 
+  
+  # Direktori output dari proses build frontend yang akan di-publish.
+  publish = "frontend/build"
 
+# Pengaturan Redirects & Rewrites
 [[redirects]]
-  # Arahkan semua request dari /api/* ke function api kita
+  # Semua permintaan yang masuk ke path /api/...
   from = "/api/*"
+  
+  # Akan diteruskan ke function 'api' yang telah kita buat.
+  # :splat akan menjaga sisa path-nya (misal: /predict).
   to = "/.netlify/functions/api/:splat"
+  
+  # Status 200 berarti ini adalah "rewrite", bukan "redirect".
+  # URL di browser pengguna tidak akan berubah, membuatnya terlihat rapi.
   status = 200
